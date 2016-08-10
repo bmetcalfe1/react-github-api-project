@@ -9,6 +9,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var App = require('./components/App');
 var Search = require('./components/Search');
 var User = require('./components/User');
+var Followers = require('./components/Followers');
 
 /*
 Rendering a router will output the right component tree based on the current URL.
@@ -19,12 +20,14 @@ If the URL is /user/ziad-saab then <App/> will be rendered, and this.props.child
 The <User/> instance will be passed a prop called `params`. It will be an object with `{username: 'ziad-saab'}`
 */
 var routes = (
-    <Router history={ReactRouter.browserHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={Search}/>
-            <Route path="user/:username" component={User}/>
-        </Route>
-    </Router>
+   <Router history={ReactRouter.browserHistory}>
+       <Route path="/" component={App}>
+           <IndexRoute component={Search}/>
+           <Route path="user/:username" component={User}>
+               <Route path="followers" component={Followers} />
+           </Route>
+       </Route>
+   </Router>
 );
 
 ReactDOM.render(routes, document.getElementById('app'));
