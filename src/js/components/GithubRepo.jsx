@@ -9,7 +9,7 @@ var GithubUser = React.createClass({
         return (
             //avatar_url and login
             <div className="repoList">
-                <a href={'/user/' + this.props.user}>
+                <a href={this.props.user.html_url}>
                     <span className="repoName">{this.props.user.name}</span>
                     <span className="stars">{this.props.user.stargazers_count} ★</span>
                 </a> 
