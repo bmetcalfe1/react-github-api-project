@@ -1,4 +1,5 @@
 var React = require('react');
+var Link = require('react-router').Link;
 
 var GithubUser = React.createClass({
     render: function() {
@@ -9,10 +10,12 @@ var GithubUser = React.createClass({
         return (
             //avatar_url and login
             <div>
-              <img className="github-user__avatar" src={this.props.user.avatar_url}/>
-              <div>
-                <p>{this.props.user.login}</p>
-              </div>
+                <Link to={'/user/' + this.props.user.login}>
+                    <img className="github-user__avatar" src={this.props.user.avatar_url}/>
+                </Link>
+                <div>
+                    <p>{this.props.user.login}</p>
+                </div>
             </div>
         );
     }
