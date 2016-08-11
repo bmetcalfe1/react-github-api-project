@@ -1,6 +1,6 @@
 var React = require('react');
 var $ = require('jquery');
-//var GithubUser = require('GithubUser');
+var GithubUser = require('./GithubUser');
 
 /*
 This component displays a form where the user can enter a GitHub username
@@ -15,13 +15,13 @@ var Followers = React.createClass({
     },
     componentDidMount: function() {
         var url = `https://api.github.com/users/${this.props.params.username}/followers`;
-        console.log(url);
+        //console.log(url);
         
         var that = this;
         
         $.getJSON(url).then(
             function(response)  {
-                console.log(response);
+                // console.log(response);
                 that.setState({
                     followers: response
                 });
@@ -32,12 +32,13 @@ var Followers = React.createClass({
         if (!this.state.followers) {
             return <div>LOADING FOLLOWERS...</div>;
         }
-        
         return (
             <div className="followers-page">
                 <h2>Followers of {this.props.params.username}</h2>
                 <ul>
-                    {this.state.followers.map(/* INSERT CODE HERE TO RETURN A NEW <GithubUser/> */)}
+                    {this.state.followers.map(function(follower){
+                        return <GithubUser key={follower.id} user={follower}/>;
+                    })}
                 </ul>
             </div>
         );
