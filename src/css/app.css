@@ -115,3 +115,15 @@ h1,h2,h3,h4,h5,h6 {
     height: 60px;
     width: 60px;
 }
+
+.repoList a {
+    text-decoration: none;
+}
+
+.repoName {
+    padding: 20px;    
+}
+
+.stars {
+    border: 1px solid black;
+}

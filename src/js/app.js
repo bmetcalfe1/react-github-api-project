@@ -10,6 +10,8 @@ var App = require('./components/App');
 var Search = require('./components/Search');
 var User = require('./components/User');
 var Followers = require('./components/Followers');
+var Following = require('./components/Following');
+var Repos = require('./components/Repos');
 
 /*
 Rendering a router will output the right component tree based on the current URL.
@@ -25,6 +27,8 @@ var routes = (
            <IndexRoute component={Search}/>
            <Route path="user/:username" component={User}>
                <Route path="followers" component={Followers} />
+               <Route path="following" component={Following} />
+               <Route path="repos" component={Repos} />
            </Route>
        </Route>
    </Router>

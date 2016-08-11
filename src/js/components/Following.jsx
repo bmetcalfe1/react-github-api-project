@@ -2,12 +2,12 @@ var React = require('react');
 var $ = require('jquery');
 var GithubUser = require('./GithubUser');
 
-var Followers = React.createClass({
+var Following = React.createClass({
     getInitialState: function() {
         return {};
     },
     fetchData: function() {
-        var url = `https://api.github.com/users/${this.props.params.username}/followers?access_token=d2405afdcd3dc25123fd8ed166bd06b69d9437aa`;
+        var url = `https://api.github.com/users/${this.props.params.username}/following?access_token=d2405afdcd3dc25123fd8ed166bd06b69d9437aa`;
         //console.log(url);
         
         var that = this;
@@ -16,7 +16,7 @@ var Followers = React.createClass({
             function(response)  {
                 // console.log(response);
                 that.setState({
-                    followers: response
+                    following: response
                 });
             } 
         );
@@ -30,15 +30,15 @@ var Followers = React.createClass({
         }
     },
     render: function() {
-        if (!this.state.followers) {
-            return <div>LOADING FOLLOWERS...</div>;
+        if (!this.state.following) {
+            return <div>LOADING FOLLOWING...</div>;
         }
         return (
             <div className="followers-page">
-                <h2>Followers of {this.props.params.username}</h2>
+                <h2>Following {this.props.params.username}</h2>
                 <ul>
-                    {this.state.followers.map(function(follower){
-                        return <GithubUser key={follower.id} user={follower}/>;
+                    {this.state.following.map(function(following){
+                        return <GithubUser key={following.id} user={following}/>;
                     })}
                 </ul>
             </div>
@@ -46,4 +46,4 @@ var Followers = React.createClass({
     }
 });
 
-module.exports = Followers;
+module.exports = Following;
